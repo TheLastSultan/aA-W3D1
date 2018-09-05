@@ -14,5 +14,15 @@ require_relative './sqlzoo.rb'
 def physics_no_chemistry
   # In which years was the Physics prize awarded, but no Chemistry prize?
   execute(<<-SQL)
+  SELECT
+    yr
+  FROM
+    nobels
+  WHERE
+    subject LIKE 'physics'
+  GROUP BY
+    subject
+  HAVING
+    subject NOT LIKE 'chemistry'
   SQL
 end
